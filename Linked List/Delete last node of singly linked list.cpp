@@ -14,13 +14,16 @@ Node* deleteTail(Node *head){
     if(head == NULL)
         return NULL;
 
-    Node *curr = head;
-
-    while(curr->next->next == NULL){
-         curr = curr->next;
+    if(head->next == NULL)
+    {
+        delete head;
+        return NULL;
     }
+    Node *curr = head;
+    while(curr->next->next != NULL)
+        curr = curr->next;
+    delete(curr->next);
     curr->next = NULL;
-    delete curr->next->next;
     return head;
 }
 
